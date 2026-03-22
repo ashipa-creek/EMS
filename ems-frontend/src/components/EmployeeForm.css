@@ -1,0 +1,89 @@
+/* FORM WRAPPER */
+.terminal-form {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 25px;
+
+  border-left: 3px solid #00ff9f;
+  background: rgba(0, 255, 159, 0.05);
+
+  box-shadow: 0 0 15px rgba(0,255,159,0.2);
+}
+
+/* TITLE */
+.terminal-title {
+  text-align: center;
+  margin-bottom: 25px;
+  letter-spacing: 3px;
+
+  color: #00ff9f;
+  text-shadow: 0 0 10px #00ff9f;
+}
+
+/* FORM GROUP */
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LABEL */
+.form-group label {
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: #00ff9f;
+  letter-spacing: 1px;
+}
+
+/* INPUT */
+.input {
+  background: transparent;
+  border: 1px solid #00ff9f;
+  color: #ffffff;
+  padding: 8px 10px;
+
+  outline: none;
+  transition: 0.2s;
+}
+
+/* INPUT FOCUS */
+.input:focus {
+  box-shadow: 0 0 10px #00ff9f;
+  border-color: #00ffaa;
+}
+
+/* ERROR INPUT */
+.input.error {
+  border-color: #ff2b2b;
+}
+
+/* ERROR TEXT */
+.error-text {
+  color: #ff2b2b;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* SUBMIT BUTTON (GX STYLE) */
+.submit-btn {
+  margin-top: 15px;
+  padding: 8px 18px;
+
+  background: transparent;
+  border: 2px solid #00ff9f;
+  color: #00ff9f;
+
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #00ff9f;
+  color: #000;
+
+  box-shadow: 
+    0 0 10px #00ff9f,
+    0 0 25px #00ff9f;
+}

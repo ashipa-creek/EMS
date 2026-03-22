@@ -1,16 +1,23 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const HeaderComponent = () => {
+
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <header>
-        <nav className='navbar navbar-dark bg-dark'>
-          <a className='navbar-brand' href="#">
-            Employee Management System
-          </a>
-        </nav>
-      </header>
-    </div>
+    <header className="app-header">
+
+      <div className="logo" onClick={() => navigate('/')}>
+        EMS SYSTEM
+      </div>
+
+      <div className="nav-links">
+        <span onClick={() => navigate('/')}>Home</span>
+        <span onClick={() => navigate('/employees')}>Employees</span>
+      </div>
+
+    </header>
   )
 }
 

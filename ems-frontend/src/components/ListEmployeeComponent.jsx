@@ -1,66 +1,116 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react';
 import { deleteEmployee, listEmployees } from '../services/EmployeeService';
 import { useNavigate } from 'react-router-dom';
+import './Employee.css';
+
 const ListEmployeeComponent = () => {
 
   const [employees, setEmployees] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const navigator = useNavigate();
 
-  useEffect(() => {getAllEmployees()}, []);
+  useEffect(() => {
+    getAllEmployees();
+  }, []);
 
-  function getAllEmployees(){
-    listEmployees().then((response) => {
-      setEmployees(response.data);
-    }).catch((error) => {
-      console.log(error);
-    })
+  function getAllEmployees() {
+    listEmployees()
+      .then((response) => {
+        setEmployees(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }
 
-  function addNewEmployee(){
+  function addNewEmployee() {
     navigator('/add-employee');
   }
-  function updateEmployee(id){
+
+  function updateEmployee(id) {
     navigator(`/edit-employee/${id}`);
   }
-  function removeEmployee(id){  
-    deleteEmployee(id).then((response) => {
-      getAllEmployees();
-    }).catch((error) => {
-      console.log(error);
-    });
-}
+
+  function removeEmployee(id) {
+    const confirmDelete = window.confirm("Delete this employee?");
+    if (!confirmDelete) return;
+
+    deleteEmployee(id)
+      .then(() => {
+        setEmployees(prev => prev.filter(emp => emp.id !== id));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
-    <div className='container'>
-      <h2 className='text-center'>List of employees</h2>
-      <button className='btn btn-primary mb-2' onClick={addNewEmployee}>Add Employee</button>
-      <table className='table table-striped table-bordered'>
-        <thead>
-          <tr>
-            <th>Employee Id</th>
-            <th>Employee First Name</th>
-            <th>Employee Last Name</th>
-            <th>Employee Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee)=>
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
-              <td>{employee.firstName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.email}</td>
-              <td>
-                <button className='btn btn-info' onClick={()=>updateEmployee(employee.id)}>Update</button>
-                <button className='btn btn-danger' style={{marginLeft: '5px'}} onClick={()=>removeEmployee(employee.id)}>Delete</button>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  )
-}
+    <div className="container">
 
-export default ListEmployeeComponent
+      {/* HEADER */}
+      <div className="terminal-header">
+        <h2 className="terminal-title">EMPLOYEES</h2>
+
+        <button className="game-btn" onClick={addNewEmployee}>
+          + ADD EMPLOYEE
+        </button>
+      </div>
+
+      {/* LOADING */}
+      {loading ? (
+        <h5 className="loading-text">Initializing system...</h5>
+      ) : (
+
+        <div className="terminal-container">
+
+          {employees.map((employee) => (
+            <div key={employee.id} className="terminal-row">
+
+              <div className="terminal-line">
+                <span className="label">ID</span>
+                <span className="value">{employee.id}</span>
+              </div>
+
+              <div className="terminal-line">
+                <span className="label">NAME</span>
+                <span className="value">
+                  {employee.firstName} {employee.lastName}
+                </span>
+              </div>
+
+              <div className="terminal-line">
+                <span className="label">EMAIL</span>
+                <span className="value">{employee.email}</span>
+              </div>
+
+              <div className="terminal-actions">
+                <button 
+                  className="action-btn edit"
+                  onClick={() => updateEmployee(employee.id)}
+                >
+                  EDIT
+                </button>
+
+                <button 
+                  className="action-btn delete"
+                  onClick={() => removeEmployee(employee.id)}
+                >
+                  DELETE
+                </button>
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      )}
+
+    </div>
+  );
+};
+
+export default ListEmployeeComponent;
