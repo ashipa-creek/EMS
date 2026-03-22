@@ -2,7 +2,7 @@
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   background: black;
 }
 
@@ -52,7 +52,7 @@ footer {
   overflow-y: auto;
 }
 
-/* GAMING SCROLLBAR 🔥 */
+/* GAMING SCROLLBAR  */
 .main-content::-webkit-scrollbar {
   width: 6px;
 }
@@ -98,7 +98,7 @@ footer {
   letter-spacing: 2px;
   cursor: pointer;
 
-  text-shadow: 
+  text-shadow:
     0 0 5px #00ff9f,
     0 0 15px #00ff9f;
 }
@@ -134,7 +134,8 @@ footer {
 }
 
 /* FORCE DARK THEME GLOBALLY */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background: #000000 !important;
@@ -155,11 +156,11 @@ html, body {
   transition: all 0.3s ease;
 }
 
-/* 🔥 GLOW HOVER */
+/* GLOW HOVER */
 .nav-links span:hover {
   color: #00ffaa;
 
-  text-shadow: 
+  text-shadow:
     0 0 5px #00ff9f,
     0 0 15px #00ff9f,
     0 0 30px #00ff9f;
